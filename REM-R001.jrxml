@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="xxx3" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="137"/>
+	<property name="ireport.x" value="117"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="reporteTitulo" class="java.lang.String">
@@ -35,7 +35,7 @@
 	<field name="montoISLR" class="java.lang.Double"/>
 	<field name="montoIVA" class="java.lang.Double"/>
 	<variable name="Numero" class="java.lang.Integer" resetType="Group" resetGroup="NumeroRemesa" calculation="Count">
-		<variableExpression><![CDATA[$F{remesa}.numRefLot]]></variableExpression>
+		<variableExpression><![CDATA[1]]></variableExpression>
 		<initialValueExpression><![CDATA[1]]></initialValueExpression>
 	</variable>
 	<variable name="CantSiniestros" class="java.lang.Integer" resetType="Group" resetGroup="numeroOrdenPago" calculation="Sum">
@@ -60,15 +60,16 @@
 	<group name="NumeroRemesa">
 		<groupExpression><![CDATA[$F{remesa}.numRefLot]]></groupExpression>
 		<groupHeader>
-			<band height="19"/>
+			<band height="19">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="5" width="752" height="14" backcolor="#999999"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA["Remesa de Pago N°:"+$F{remesa}.numRefLot]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="14">
-				<textField>
-					<reportElement x="48" y="0" width="59" height="14"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$F{numeroOrden}]]></textFieldExpression>
-				</textField>
 				<textField>
 					<reportElement x="249" y="0" width="88" height="14"/>
 					<textElement/>
@@ -79,27 +80,27 @@
 					<textElement/>
 					<textFieldExpression><![CDATA[$F{remesa}.numRefLot]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00">
 					<reportElement x="425" y="0" width="60" height="14"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{montoPagar_1}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00">
 					<reportElement x="485" y="0" width="54" height="14"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{montoTitulares_1}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00">
 					<reportElement x="539" y="0" width="54" height="14"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{montoBeneficiarios_1}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00">
 					<reportElement x="593" y="0" width="38" height="14"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{montoISLR_1}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField pattern="#,##0.00">
 					<reportElement x="631" y="0" width="38" height="14"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[$V{montoIVA_1}]]></textFieldExpression>
@@ -108,7 +109,54 @@
 		</groupFooter>
 	</group>
 	<group name="numeroOrdenPago">
-		<groupExpression><![CDATA[$F{numeroOrden}]]></groupExpression>
+		<groupExpression><![CDATA[$F{personaPago}.id]]></groupExpression>
+		<groupHeader>
+			<band height="14">
+				<textField>
+					<reportElement x="0" y="0" width="107" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{numeroOrden}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="0" width="270" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{personaPago}.nombreLargo]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="425" y="0" width="60" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{montoPagar_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="485" y="0" width="54" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{montoTitulares_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="539" y="0" width="54" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{montoBeneficiarios_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="593" y="0" width="38" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{montoISLR_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="631" y="0" width="38" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{montoIVA_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="107" y="0" width="48" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{CantSiniestros}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="672" y="13" width="80" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -177,12 +225,7 @@
 			<frame>
 				<reportElement x="0" y="0" width="752" height="27"/>
 				<textField>
-					<reportElement x="0" y="13" width="48" height="14"/>
-					<textElement/>
-					<textFieldExpression><![CDATA["Nro."]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="48" y="0" width="59" height="27"/>
+					<reportElement x="0" y="0" width="107" height="27"/>
 					<textElement/>
 					<textFieldExpression><![CDATA["Numero Orden Pago"]]></textFieldExpression>
 				</textField>
@@ -230,93 +273,35 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="48" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{Numero}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="48" y="0" width="59" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{numeroOrden}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="155" y="0" width="270" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{personaPago}.nombreLargo]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="425" y="0" width="60" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{montoPagar_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="485" y="0" width="54" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{montoTitulares_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="539" y="0" width="54" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{montoBeneficiarios_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="593" y="0" width="38" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{montoISLR_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="631" y="0" width="38" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{montoIVA_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="107" y="0" width="48" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$V{CantSiniestros}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="672" y="13" width="80" height="1"/>
-			</line>
-		</band>
+		<band splitType="Stretch"/>
 	</detail>
 	<pageFooter>
-		<band height="3" splitType="Stretch">
-			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="752" height="1"/>
-				<subreportParameter name="empresaTelefono">
-					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
+		<band height="2" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="15">
+		<band height="16">
 			<printWhenExpression><![CDATA[$V{NumeroRemesa_COUNT}>1?true:false]]></printWhenExpression>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="425" y="0" width="60" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoPagar_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="593" y="0" width="38" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoISLR_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="539" y="0" width="54" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoBeneficiarios_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="631" y="0" width="38" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoIVA_1}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="485" y="0" width="54" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoTitulares_1}]]></textFieldExpression>
