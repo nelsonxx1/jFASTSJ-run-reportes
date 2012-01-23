@@ -27,7 +27,7 @@
 	<field name="numRefLot" class="java.lang.String"/>
 	<field name="detalle" class="java.lang.String"/>
 	<field name="tipoPago" class="java.lang.Object"/>
-	<field name="ordenDePagos" class="java.util.List"/>
+	<field name="ordenDePagos" class="java.util.Set"/>
 	<field name="montoPagar" class="java.lang.Double"/>
 	<field name="fechaPago" class="java.util.Date"/>
 	<field name="montoTitulares" class="java.lang.Double"/>
@@ -279,15 +279,6 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="7" splitType="Stretch">
-			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="752" height="1"/>
-				<subreportParameter name="empresaTelefono">
-					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
+		<band height="7" splitType="Stretch"/>
 	</pageFooter>
 </jasperReport>
