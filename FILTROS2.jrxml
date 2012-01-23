@@ -35,7 +35,7 @@
 				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="97" height="9"/>
+				<reportElement x="2" y="0" width="95" height="9"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
