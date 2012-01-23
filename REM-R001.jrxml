@@ -31,7 +31,7 @@
 	<field name="personaPago" class="com.jswitch.persona.modelo.maestra.Persona"/>
 	<field name="montoPagar" class="java.lang.Double"/>
 	<field name="montoTitulares" class="java.lang.Double"/>
-	<field name="montoBeneficiarios" class="java.lang.Double"/>
+	<field name="montoFamiliares" class="java.lang.Double"/>
 	<field name="montoISLR" class="java.lang.Double"/>
 	<field name="montoIVA" class="java.lang.Double"/>
 	<variable name="Numero" class="java.lang.Integer" resetType="Group" resetGroup="NumeroRemesa" calculation="Count">
@@ -49,7 +49,7 @@
 		<variableExpression><![CDATA[$F{montoTitulares}]]></variableExpression>
 	</variable>
 	<variable name="montoBeneficiarios_1" class="java.lang.Double" resetType="Group" resetGroup="NumeroRemesa" calculation="Sum">
-		<variableExpression><![CDATA[$F{montoBeneficiarios}]]></variableExpression>
+		<variableExpression><![CDATA[$F{montoFamiliares}]]></variableExpression>
 	</variable>
 	<variable name="montoISLR_1" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{montoISLR}]]></variableExpression>
