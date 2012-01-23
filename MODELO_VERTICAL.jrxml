@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="xxx3" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MODELO_HORIZONTAL" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -27,7 +27,7 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Personal\\Documents\\NetBeansProjects\\switch\\fas\\jFASTSJ-run\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
-	<queryString>
+	<queryString language="hql">
 		<![CDATA[$P!{reporteSQL}]]>
 	</queryString>
 	<field name="id" class="java.lang.Long"/>
@@ -36,24 +36,24 @@
 	<title>
 		<band height="1">
 			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="426" y="0" width="324" height="0"/>
+				<reportElement stretchType="RelativeToTallestObject" x="246" y="0" width="324" height="0"/>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($P{reporteParametros})]]></dataSourceExpression>
 				<subreportExpression><![CDATA["FILTROS2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
 				<subreportParameter name="empresaTelefono">
 					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["TITLE_HORIZONTAL.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["TITLE_VERTICAL.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="1">
 			<subreport>
-				<reportElement x="0" y="0" width="750" height="0"/>
+				<reportElement x="0" y="0" width="572" height="0"/>
 				<subreportParameter name="PAGE_NUMBER">
 					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -61,52 +61,20 @@
 					<subreportParameterExpression><![CDATA[$V{PAGE_COUNT}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["PAGE_HEADER_HORIZONTAL.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["PAGE_HEADER_VERTICAL.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="376" height="20"/>
-				<textElement/>
-				<text><![CDATA[id]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="376" y="0" width="128" height="20"/>
-				<textElement/>
-				<text><![CDATA[montopagado]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="555" y="2" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[tratamientoescrito]]></text>
-			</staticText>
-		</band>
+		<band height="31" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="31" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="376" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="376" y="0" width="128" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{montopagado}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="555" y="3" width="195" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{tratamientoescrito}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="31" splitType="Stretch"/>
 	</detail>
 	<pageFooter>
 		<band height="1" splitType="Stretch">
 			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
 				<subreportParameter name="empresaLogo">
 					<subreportParameterExpression><![CDATA[$P{empresaLogo}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -153,19 +121,19 @@
 					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["PAGE_FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["PAGE_FOOTER_VERTICAL.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
 		<band height="1">
 			<subreport>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
 				<subreportParameter name="empresaTelefono">
 					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
-				<subreportExpression><![CDATA["LAST_PAGE_FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["LAST_PAGE_FOOTER_VERTICAL.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</lastPageFooter>
