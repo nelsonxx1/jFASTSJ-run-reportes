@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MODELO_HORIZONTAL" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="133"/>
+	<property name="ireport.x" value="8"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="reporteTitulo" class="java.lang.String">
@@ -312,6 +312,16 @@
 				<reportElement x="714" y="0" width="36" height="14"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$V{montoTimbreMunicipal_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="127" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Total Pagado + I.S.L.R: =>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="136" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoISLR_1}.doubleValue()+$V{montoPagar_1}.doubleValue()]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
