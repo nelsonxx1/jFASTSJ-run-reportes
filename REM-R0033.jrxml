@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MODELO_HORIZONTAL" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="538"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="reporteTitulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteFile" class="java.lang.String"/>
+	<parameter name="reporteEstilo" class="java.lang.String"/>
+	<parameter name="empresaNombre" class="java.lang.String"/>
+	<parameter name="empresaRif" class="java.lang.String"/>
+	<parameter name="empresaLogo" class="java.awt.Image"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="datosSistema" class="java.lang.String[]"/>
+	<parameter name="reporteSQL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteParametros" class="java.util.List"/>
+	<parameter name="empresaDireccion" class="java.lang.String"/>
+	<parameter name="empresaSuperintendencia" class="java.lang.String"/>
+	<parameter name="empresaPagina" class="java.lang.String"/>
+	<parameter name="empresaTelefono" class="java.lang.String"/>
+	<parameter name="empresaObservacion" class="java.lang.String"/>
+	<parameter name="empresaEmail" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Personal\\Documents\\NetBeansProjects\\switch\\fas\\jFASTSJ-run\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="hql">
+		<![CDATA[$P!{reporteSQL}]]>
+	</queryString>
+	<field name="montoPagar" class="java.lang.Double"/>
+	<field name="montoTitulares" class="java.lang.Double"/>
+	<field name="montoFamiliares" class="java.lang.Double"/>
+	<field name="montoISLR" class="java.lang.Double"/>
+	<field name="montoIVA" class="java.lang.Double"/>
+	<field name="montoTimbreMunicipal" class="java.lang.Double"/>
+	<field name="detalle" class="java.lang.String"/>
+	<field name="fechaPago" class="java.util.Date"/>
+	<field name="tipoPago" class="java.lang.Object"/>
+	<field name="ordenDePagos" class="java.util.Set"/>
+	<field name="numeroSiniestrosFamiliar" class="java.lang.Integer"/>
+	<field name="numeroSiniestrosTitular" class="java.lang.Integer"/>
+	<field name="numRefLot" class="java.lang.Integer"/>
+	<field name="numeroOrdenes" class="java.lang.String"/>
+	<variable name="ordenDePagos_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{numeroOrdenes}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="numeroSiniestrosFamiliar_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{numeroSiniestrosFamiliar}+$F{numeroSiniestrosTitular}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="montoTitulares_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTitulares}]]></variableExpression>
+	</variable>
+	<variable name="montoFamiliares_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoFamiliares}]]></variableExpression>
+	</variable>
+	<variable name="montoISLR_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoISLR}]]></variableExpression>
+	</variable>
+	<variable name="montoTimbreMunicipal_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTimbreMunicipal}]]></variableExpression>
+	</variable>
+	<variable name="montoPagar_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoPagar}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="1">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="426" y="0" width="324" height="0"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($P{reporteParametros})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["FILTROS2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["TITLE_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1">
+			<subreport>
+				<reportElement x="0" y="0" width="750" height="0"/>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_COUNT">
+					<subreportParameterExpression><![CDATA[$V{PAGE_COUNT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["PAGE_HEADER_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="752" height="27"/>
+				<textField>
+					<reportElement x="0" y="13" width="107" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Numero de Remesa"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="107" y="13" width="230" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Descripcion"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="508" y="0" width="60" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto a Pagar"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="568" y="0" width="54" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto Titular"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="622" y="0" width="54" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto Beneficiario"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="676" y="0" width="38" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto I.S.L.R."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="714" y="0" width="38" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto Municipal"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="456" y="0" width="52" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Numero de Stros."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="409" y="0" width="47" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Numero Ordenes"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="377" y="13" width="32" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["DOC"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="337" y="0" width="40" height="27"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Pagado"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="###0">
+				<reportElement x="0" y="0" width="107" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numRefLot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="230" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="337" y="0" width="40" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="0" width="32" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{tipoPago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="409" y="0" width="47" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroOrdenes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="456" y="0" width="52" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroSiniestrosFamiliar}+$F{numeroSiniestrosTitular}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="508" y="0" width="60" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoPagar}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="568" y="0" width="54" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoTitulares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="622" y="0" width="54" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoFamiliares}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="676" y="0" width="38" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoISLR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="714" y="0" width="38" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoTimbreMunicipal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="1" splitType="Stretch">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<subreportParameter name="empresaLogo">
+					<subreportParameterExpression><![CDATA[$P{empresaLogo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datosSistema">
+					<subreportParameterExpression><![CDATA[$P{datosSistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaDireccion">
+					<subreportParameterExpression><![CDATA[$P{empresaDireccion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaRif">
+					<subreportParameterExpression><![CDATA[$P{empresaRif}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteFile">
+					<subreportParameterExpression><![CDATA[$P{reporteFile}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteParametros">
+					<subreportParameterExpression><![CDATA[$P{reporteParametros}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaSuperintendencia">
+					<subreportParameterExpression><![CDATA[$P{empresaSuperintendencia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaNombre">
+					<subreportParameterExpression><![CDATA[$P{empresaNombre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaPagina">
+					<subreportParameterExpression><![CDATA[$P{empresaPagina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteEstilo">
+					<subreportParameterExpression><![CDATA[$P{reporteEstilo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaObservacion">
+					<subreportParameterExpression><![CDATA[$P{empresaObservacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaEmail">
+					<subreportParameterExpression><![CDATA[$P{empresaEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteTitulo">
+					<subreportParameterExpression><![CDATA[$P{reporteTitulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["PAGE_FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="1">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="750" height="1"/>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["LAST_PAGE_FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="14">
+			<textField pattern="#,##0">
+				<reportElement x="409" y="0" width="47" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{ordenDePagos_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="456" y="0" width="52" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{numeroSiniestrosFamiliar_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="508" y="0" width="60" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoPagar_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="568" y="0" width="54" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoTitulares_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="622" y="0" width="54" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoFamiliares_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="676" y="0" width="38" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoISLR_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="714" y="0" width="36" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{montoTimbreMunicipal_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
