@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MODELO_HORIZONTAL" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="8"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="reporteTitulo" class="java.lang.String">
@@ -34,7 +34,7 @@
 	<field name="montoTitulares" class="java.lang.Double"/>
 	<field name="montoFamiliares" class="java.lang.Double"/>
 	<field name="montoISLR" class="java.lang.Double"/>
-	<field name="montoIVA" class="java.lang.Double"/>
+	<field name="montoIva" class="java.lang.Double"/>
 	<field name="montoTimbreMunicipal" class="java.lang.Double"/>
 	<field name="detalle" class="java.lang.String"/>
 	<field name="fechaPago" class="java.util.Date"/>
@@ -185,7 +185,7 @@
 			<textField pattern="#,##0">
 				<reportElement x="409" y="0" width="47" height="15"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{numeroOrdenes}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ordenDePagos}.size()]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
 				<reportElement x="456" y="0" width="52" height="15"/>

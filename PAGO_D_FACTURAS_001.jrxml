@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PAGO_D_FACTURAS_001" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<style name="TituloSombreado1" mode="Opaque" backcolor="#CCCCCC" hAlign="Center" vAlign="Middle" isBold="true">
+		<box>
+			<topPen lineWidth="1.0"/>
+			<leftPen lineWidth="1.0"/>
+			<bottomPen lineWidth="1.0"/>
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="SubTitulo1" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="8" isBold="true"/>
+	<style name="Monto1" hAlign="Right" vAlign="Top"/>
+	<style name="Total1" mode="Opaque" hAlign="Right" vAlign="Top" isBold="true">
+		<box>
+			<topPen lineWidth="1.0"/>
+		</box>
+	</style>
 	<parameter name="reporteTitulo" class="java.lang.String">
 		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
 	</parameter>
@@ -28,9 +43,196 @@
 		<defaultValueExpression><![CDATA["C:\\Users\\Personal\\Documents\\NetBeansProjects\\switch\\fas\\jFASTSJ-run\\Reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="hql">
-		<![CDATA[$P!{reporteSQL}]]>
+		<![CDATA[FROM com.jswitch.pagos.modelo.maestra.Factura]]>
 	</queryString>
+	<field name="auditoria" class="com.jswitch.base.modelo.entidades.auditoria.AuditoriaBasica"/>
+	<field name="baseIslr" class="java.lang.Double"/>
+	<field name="baseIva" class="java.lang.Double"/>
+	<field name="desgloseCobertura" class="java.util.Set"/>
+	<field name="desgloseSumaAsegurada" class="java.util.Set"/>
+	<field name="detalleSiniestro" class="com.jswitch.siniestros.modelo.maestra.DetalleSiniestro"/>
+	<field name="fechaFactura" class="java.util.Date"/>
+	<field name="fechaPagado" class="java.util.Date"/>
+	<field name="fechaRecepcion" class="java.util.Date"/>
+	<field name="gastosClinicos" class="java.lang.Double"/>
+	<field name="honorariosMedicos" class="java.lang.Double"/>
 	<field name="id" class="java.lang.Long"/>
+	<field name="montoAmparado" class="java.lang.Double"/>
+	<field name="montoIva" class="java.lang.Double"/>
+	<field name="montoNoAmparado" class="java.lang.Double"/>
+	<field name="montoRetencionDeducible" class="java.lang.Double"/>
+	<field name="montoRetencionIslr" class="java.lang.Double"/>
+	<field name="montoRetencionIva" class="java.lang.Double"/>
+	<field name="numeroControl" class="java.lang.String"/>
+	<field name="numeroFactura" class="java.lang.String"/>
+	<field name="optLock" class="java.lang.Integer"/>
+	<field name="porcentajeIva" class="java.lang.Double"/>
+	<field name="porcentajeRetencionIslr" class="java.lang.Double"/>
+	<field name="porcentajeRetencionIva" class="java.lang.Double"/>
+	<field name="porcentajeRetencionProntoPago" class="java.lang.Double"/>
+	<field name="porcentajeRetencionTM" class="java.lang.Double"/>
+	<field name="sumaFactura" class="com.jswitch.vistasbd.SumaFactura"/>
+	<field name="tipoConceptoSeniat" class="com.jswitch.pagos.modelo.dominio.ConceptoSENIAT"/>
+	<field name="totalFacturado" class="java.lang.Double"/>
+	<field name="totalLiquidado" class="java.lang.Double"/>
+	<field name="valorUT" class="java.lang.Double"/>
+	<variable name="totalLiquidado_1" class="java.lang.Double" resetType="Group" resetGroup="tipoContrato" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalLiquidado}]]></variableExpression>
+	</variable>
+	<variable name="baseIslr_1" class="java.lang.Double" resetType="Group" resetGroup="tipoContrato" calculation="Sum">
+		<variableExpression><![CDATA[$F{baseIslr}]]></variableExpression>
+	</variable>
+	<variable name="montoRetencionIslr_1" class="java.lang.Double" resetType="Group" resetGroup="tipoContrato" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoRetencionIslr}]]></variableExpression>
+	</variable>
+	<variable name="montoRetencionTM" class="java.lang.Double" resetType="Group" resetGroup="tipoContrato" calculation="Sum">
+		<variableExpression><![CDATA[$F{sumaFactura}.montoRetencionTM]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalACancelar" class="java.lang.Double" resetType="Group" resetGroup="tipoContrato" calculation="Sum">
+		<variableExpression><![CDATA[$F{sumaFactura}.totalACancelar]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SumtotalLiquidado" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalLiquidado}]]></variableExpression>
+	</variable>
+	<variable name="SumBaseIslr" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{baseIslr}]]></variableExpression>
+	</variable>
+	<variable name="SumMontoRetencionIsl" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoRetencionIslr}]]></variableExpression>
+	</variable>
+	<variable name="SumMontoRetencionTM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sumaFactura}.montoRetencionTM]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="SumTotalACancelar" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sumaFactura}.totalACancelar]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.String" calculation="Sum">
+		<variableExpression><![CDATA[$F{detalleSiniestro}.siniestro.certificado.titular.tipoContrato.nombre+"+"]]></variableExpression>
+		<initialValueExpression><![CDATA[" "]]></initialValueExpression>
+	</variable>
+	<group name="tipoContrato">
+		<groupExpression><![CDATA[$F{detalleSiniestro}.siniestro.certificado.titular.tipoContrato.id]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField>
+					<reportElement style="TituloSombreado1" x="0" y="10" width="572" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{detalleSiniestro}.siniestro.certificado.titular.tipoContrato.nombre]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="0" y="30" width="61" height="20"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$R{sinestro.numero}==null?"N° Siniestro":$R{sinestro.numero}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="61" y="30" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{certificado.titular}==null
+?"Empleado"
+:$R{certificado.titular}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="161" y="30" width="59" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{persona.cedula}==null
+?"N° Cedula"
+:$R{persona.cedula}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="220" y="30" width="54" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.numero}==null
+?"N° Factura"
+:$R{factura.numero}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="274" y="30" width="50" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.totalLiquidado}==null
+?"Monto Liquidado"
+:$R{factura.totalLiquidado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="SubTitulo1" x="324" y="30" width="51" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.montoRetencionTM}==null
+?"Impuesto TM"
+:$R{factura.montoRetencionTM}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="SubTitulo1" x="375" y="30" width="51" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.baseIslr}==null
+?"Sujeto a Retención"
+:$R{factura.baseIslr}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="SubTitulo1" x="426" y="30" width="51" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.montoRetencionIslr}==null
+?"Retención ISLR"
+:$R{factura.montoRetencionIslr}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="SubTitulo1" x="477" y="30" width="51" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$R{factura.totalACancelar}==null
+?"Total a Cancelar"
+:$R{factura.totalACancelar}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<textField pattern="#,##0.00">
+					<reportElement style="Total1" x="275" y="0" width="49" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalLiquidado_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement style="Total1" x="375" y="0" width="51" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{baseIslr_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement style="Total1" x="426" y="0" width="51" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{montoRetencionIslr_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement style="Total1" x="324" y="0" width="51" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{montoRetencionTM}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement style="Total1" x="477" y="0" width="51" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalACancelar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="175" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" TOTAL ("+$V{tipoContrato_COUNT}.toString()+")  ----->"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
 	<title>
 		<band height="1">
 			<subreport>
@@ -112,20 +314,80 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
-			<staticText>
-				<reportElement x="33" y="2" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[id]]></text>
-			</staticText>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{detalleSiniestro}.personaPago.nombreLargo]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="31" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="33" y="10" width="100" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="61" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleSiniestro}.siniestro.numero]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="61" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleSiniestro}.siniestro.certificado.titular.persona.nombreCorto]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="0" width="59" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleSiniestro}.siniestro.certificado.titular.persona.rif.rif]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="54" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroFactura}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement style="Monto1" x="274" y="1" width="50" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalLiquidado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Monto1" x="324" y="1" width="51" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sumaFactura}.montoRetencionTM]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Monto1" x="375" y="1" width="51" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{baseIslr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Monto1" x="426" y="1" width="51" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montoRetencionIslr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Monto1" x="477" y="1" width="51" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sumaFactura}.totalACancelar]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -195,4 +457,50 @@
 			</subreport>
 		</band>
 	</lastPageFooter>
+	<summary>
+		<band height="20">
+			<textField pattern="#,##0.00">
+				<reportElement style="Total1" x="477" y="0" width="51" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumTotalACancelar}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Total1" x="375" y="0" width="51" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumBaseIslr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Total1" x="426" y="0" width="51" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumMontoRetencionIsl}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="275" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" TOTAL GLOBAL("+$V{REPORT_COUNT}.toString()+")  ----->"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Total1" x="324" y="0" width="51" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumMontoRetencionTM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="Total1" x="275" y="0" width="49" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SumtotalLiquidado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>

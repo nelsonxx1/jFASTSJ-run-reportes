@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="Titulo1"/>
+	<style name="Titulo2"/>
+	<style name="Titulo3"/>
+	<style name="TituloSombreado1" mode="Opaque" backcolor="#CCCCCC">
+		<pen lineWidth="1.0"/>
+	</style>
+	<style name="TituloSombreado2"/>
+	<style name="TituloSombreado3"/>
+</jasperTemplate>
