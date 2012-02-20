@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SUB-FACTURAS" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="reporteTitulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteFile" class="java.lang.String"/>
+	<parameter name="reporteEstilo" class="java.lang.String"/>
+	<parameter name="empresaNombre" class="java.lang.String"/>
+	<parameter name="empresaRif" class="java.lang.String"/>
+	<parameter name="empresaLogo" class="java.awt.Image"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="datosSistema" class="java.lang.String[]"/>
+	<parameter name="reporteParametros" class="java.util.List"/>
+	<parameter name="empresaDireccion" class="java.lang.String"/>
+	<parameter name="empresaSuperintendencia" class="java.lang.String"/>
+	<parameter name="empresaPagina" class="java.lang.String"/>
+	<parameter name="empresaTelefono" class="java.lang.String"/>
+	<parameter name="empresaObservacion" class="java.lang.String"/>
+	<parameter name="empresaEmail" class="java.lang.String"/>
+	<queryString language="hql">
+		<![CDATA[FROM com.jswitch.pagos.modelo.maestra.Factura]]>
+	</queryString>
+	<field name="auditoria" class="com.jswitch.base.modelo.entidades.auditoria.AuditoriaBasica"/>
+	<field name="baseIslr" class="java.lang.Double"/>
+	<field name="baseIva" class="java.lang.Double"/>
+	<field name="desgloseCobertura" class="java.util.Set"/>
+	<field name="desgloseSumaAsegurada" class="java.util.Set"/>
+	<field name="detalleSiniestro" class="com.jswitch.siniestros.modelo.maestra.DetalleSiniestro"/>
+	<field name="fechaFactura" class="java.util.Date"/>
+	<field name="fechaPagado" class="java.util.Date"/>
+	<field name="fechaRecepcion" class="java.util.Date"/>
+	<field name="gastosClinicos" class="java.lang.Double"/>
+	<field name="honorariosMedicos" class="java.lang.Double"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="montoAmparado" class="java.lang.Double"/>
+	<field name="montoIva" class="java.lang.Double"/>
+	<field name="montoNoAmparado" class="java.lang.Double"/>
+	<field name="montoRetencionDeducible" class="java.lang.Double"/>
+	<field name="montoRetencionIslr" class="java.lang.Double"/>
+	<field name="montoRetencionIva" class="java.lang.Double"/>
+	<field name="numeroControl" class="java.lang.String"/>
+	<field name="numeroFactura" class="java.lang.String"/>
+	<field name="optLock" class="java.lang.Integer"/>
+	<field name="porcentajeIva" class="java.lang.Double"/>
+	<field name="porcentajeRetencionIslr" class="java.lang.Double"/>
+	<field name="porcentajeRetencionIva" class="java.lang.Double"/>
+	<field name="porcentajeRetencionProntoPago" class="java.lang.Double"/>
+	<field name="porcentajeRetencionTM" class="java.lang.Double"/>
+	<field name="sumaFactura" class="com.jswitch.vistasbd.SumaFactura"/>
+	<field name="tipoConceptoSeniat" class="com.jswitch.pagos.modelo.dominio.ConceptoSENIAT"/>
+	<field name="totalFacturado" class="java.lang.Double"/>
+	<field name="totalLiquidado" class="java.lang.Double"/>
+	<field name="valorUT" class="java.lang.Double"/>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroFactura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[numeroControl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[fechaFactura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[fechaRecepcion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroFactura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numeroControl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaFactura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaRecepcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

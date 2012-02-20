@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SUB_SINI_OBSERBACIONES" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1"/>
+	<parameter name="reporteTitulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteFile" class="java.lang.String"/>
+	<parameter name="reporteEstilo" class="java.lang.String"/>
+	<parameter name="empresaNombre" class="java.lang.String"/>
+	<parameter name="empresaRif" class="java.lang.String"/>
+	<parameter name="empresaLogo" class="java.awt.Image"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="datosSistema" class="java.lang.String[]"/>
+	<parameter name="reporteSQL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteParametros" class="java.util.List"/>
+	<parameter name="empresaDireccion" class="java.lang.String"/>
+	<parameter name="empresaSuperintendencia" class="java.lang.String"/>
+	<parameter name="empresaPagina" class="java.lang.String"/>
+	<parameter name="empresaTelefono" class="java.lang.String"/>
+	<parameter name="empresaObservacion" class="java.lang.String"/>
+	<parameter name="empresaEmail" class="java.lang.String"/>
+	<queryString language="hql">
+		<![CDATA[FROM com.jswitch.base.modelo.entidades.Observacion]]>
+	</queryString>
+	<field name="auditoria" class="com.jswitch.base.modelo.entidades.auditoria.AuditoriaBasica"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="observacion" class="java.lang.String"/>
+	<field name="optLock" class="java.lang.Integer"/>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="0" width="536" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{observacion}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="10" y="4" width="5" height="5" backcolor="#3399FF"/>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>

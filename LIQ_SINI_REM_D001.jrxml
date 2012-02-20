@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="xxx3" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.4641000000000015"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="reporteTitulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteFile" class="java.lang.String"/>
+	<parameter name="reporteEstilo" class="java.lang.String"/>
+	<parameter name="empresaNombre" class="java.lang.String"/>
+	<parameter name="empresaRif" class="java.lang.String"/>
+	<parameter name="empresaLogo" class="java.awt.Image"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="datosSistema" class="java.lang.String[]"/>
+	<parameter name="reporteParametros" class="java.util.List"/>
+	<parameter name="empresaDireccion" class="java.lang.String"/>
+	<parameter name="empresaSuperintendencia" class="java.lang.String"/>
+	<parameter name="empresaPagina" class="java.lang.String"/>
+	<parameter name="empresaTelefono" class="java.lang.String"/>
+	<parameter name="empresaObservacion" class="java.lang.String"/>
+	<parameter name="empresaEmail" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from vista1]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="suma" class="java.lang.Double"/>
+	<group name="Factura">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="3">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
+				<subreportParameter name="empresaLogo">
+					<subreportParameterExpression><![CDATA[$P{empresaLogo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datosSistema">
+					<subreportParameterExpression><![CDATA[$P{datosSistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaDireccion">
+					<subreportParameterExpression><![CDATA[$P{empresaDireccion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaRif">
+					<subreportParameterExpression><![CDATA[$P{empresaRif}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteFile">
+					<subreportParameterExpression><![CDATA[$P{reporteFile}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteParametros">
+					<subreportParameterExpression><![CDATA[$P{reporteParametros}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaSuperintendencia">
+					<subreportParameterExpression><![CDATA[$P{empresaSuperintendencia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaNombre">
+					<subreportParameterExpression><![CDATA[$P{empresaNombre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaPagina">
+					<subreportParameterExpression><![CDATA[$P{empresaPagina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteEstilo">
+					<subreportParameterExpression><![CDATA[$P{reporteEstilo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaObservacion">
+					<subreportParameterExpression><![CDATA[$P{empresaObservacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaEmail">
+					<subreportParameterExpression><![CDATA[$P{empresaEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteTitulo">
+					<subreportParameterExpression><![CDATA[$P{reporteTitulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["HEADER_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="248" y="1" width="324" height="0"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($P{reporteParametros})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["FILTROS2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="31" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="186" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="572" height="120"/>
+				<textField>
+					<reportElement x="7" y="4" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["TITULAR:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="18" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["ASEGURADO:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="32" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["PARENTESCO:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="46" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Tipo-Contrato:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="60" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Tipo-Certificado:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="74" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Tipo-Tramite:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="88" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Tipo-Siniestro:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="102" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Diagnostico:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="4" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="4" width="29" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["C.I:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="18" width="29" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["C.I:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="501" y="4" width="67" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="501" y="18" width="67" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="18" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="46" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="60" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="74" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="88" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="102" width="379" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="32" width="141" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="234" y="32" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha-Ingreso:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="32" width="86" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="406" y="32" width="37" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Edad:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="443" y="32" width="29" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="472" y="32" width="39" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Sexo:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="511" y="32" width="57" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Masculino"]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="121" width="572" height="64"/>
+				<textField>
+					<reportElement x="44" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Número Factura"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="44" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="109" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Número Control"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="109" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="175" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="175" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Factura"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="241" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Recepción"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="241" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Liquidación"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="382" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="382" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Ingreso"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="448" y="28" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="448" y="0" width="61" height="28"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Fecha Egreso"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="46" width="64" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Cuenta Nro:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="75" y="46" width="227" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="46" width="61" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Sucursal:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="382" y="46" width="179" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="186">
+			<frame>
+				<reportElement x="0" y="0" width="572" height="185"/>
+				<textField>
+					<reportElement x="7" y="2" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Beneficiario:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="138" y="2" width="430" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="16" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Total Facturado:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="30" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Gastos NO Amparados:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="44" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Deducible:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="58" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Total Deducciones:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="72" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Total Liquidado:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="86" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Gastos Médicos:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="100" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Gastos Clínicos:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="114" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto Sujeto de Retención:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="128" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto I.S.L.R:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="142" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["I.V.A. (Clínica)"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="156" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["I.V.A. Retenido:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="170" width="131" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto a Cancelar:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="114" width="96" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Presupuesto Inicial:"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="320" y="128" width="96" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Monto Negociación:"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="50">
+			<frame>
+				<reportElement x="0" y="0" width="572" height="50"/>
+				<textField>
+					<reportElement x="7" y="0" width="141" height="13"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["TRATAMIENTO DESCRITO:"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="50">
+			<frame>
+				<reportElement x="0" y="0" width="572" height="50"/>
+				<textField>
+					<reportElement x="7" y="0" width="131" height="13"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["DESGLOSE DE COSTOS:"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="3" splitType="Stretch">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["FOOTER_HORIZONTAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>

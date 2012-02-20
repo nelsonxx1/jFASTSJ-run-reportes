@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SINI_APS_D001" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<style name="TituloSombreado1" mode="Opaque" backcolor="#E9E9E9" hAlign="Center" vAlign="Middle" isBold="true">
+		<box>
+			<topPen lineWidth="1.0"/>
+			<leftPen lineWidth="1.0"/>
+			<bottomPen lineWidth="1.0"/>
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="SubTitulo1" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="8" isBold="true"/>
+	<style name="Monto1" hAlign="Right" vAlign="Top"/>
+	<style name="Total1" mode="Opaque" hAlign="Right" vAlign="Top" isBold="true">
+		<box>
+			<topPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<parameter name="reporteTitulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["TITULO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteFile" class="java.lang.String"/>
+	<parameter name="reporteEstilo" class="java.lang.String"/>
+	<parameter name="empresaNombre" class="java.lang.String"/>
+	<parameter name="empresaRif" class="java.lang.String"/>
+	<parameter name="empresaLogo" class="java.awt.Image"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="datosSistema" class="java.lang.String[]"/>
+	<parameter name="reporteSQL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reporteParametros" class="java.util.List"/>
+	<parameter name="empresaDireccion" class="java.lang.String"/>
+	<parameter name="empresaSuperintendencia" class="java.lang.String"/>
+	<parameter name="empresaPagina" class="java.lang.String"/>
+	<parameter name="empresaTelefono" class="java.lang.String"/>
+	<parameter name="empresaObservacion" class="java.lang.String"/>
+	<parameter name="empresaEmail" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Personal\\Documents\\NetBeansProjects\\switch\\fas\\jFASTSJ-run\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="hql">
+		<![CDATA[FROM com.jswitch.siniestros.modelo.maestra.DetalleSiniestro]]>
+	</queryString>
+	<field name="analistaNegociador" class="com.jswitch.persona.modelo.maestra.Persona"/>
+	<field name="auditoria" class="com.jswitch.base.modelo.entidades.auditoria.AuditoriaBasica"/>
+	<field name="diagnosticoSiniestros" class="java.util.Set"/>
+	<field name="documentos" class="java.util.Set"/>
+	<field name="etapaSiniestro" class="com.jswitch.siniestros.modelo.dominio.EtapaSiniestro"/>
+	<field name="fechaLiquidado" class="java.util.Date"/>
+	<field name="fechaPagado" class="java.util.Date"/>
+	<field name="fechaVencimiento" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="notasTecnicas" class="java.util.List"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="observaciones" class="java.util.List"/>
+	<field name="optLock" class="java.lang.Integer"/>
+	<field name="ordenDePago" class="com.jswitch.pagos.modelo.maestra.OrdenDePago"/>
+	<field name="pagos" class="java.util.Set"/>
+	<field name="personaPago" class="com.jswitch.persona.modelo.maestra.Persona"/>
+	<field name="presupuestadoAjustado" class="java.lang.Double"/>
+	<field name="presupuestadoInicial" class="java.lang.Double"/>
+	<field name="ramo" class="com.jswitch.configuracion.modelo.dominio.Ramo"/>
+	<field name="reportes" class="java.util.Set"/>
+	<field name="selected" class="java.lang.Boolean"/>
+	<field name="siniestro" class="com.jswitch.siniestros.modelo.maestra.Siniestro"/>
+	<field name="sumaDetalle" class="com.jswitch.vistasbd.SumaDetalle"/>
+	<field name="tipoDetalle" class="java.lang.String"/>
+	<field name="tipoEnfermedad" class="com.jswitch.fas.modelo.Dominios$TipoEnfermedad"/>
+	<field name="tipoPersona" class="com.jswitch.persona.modelo.dominio.TipoPersona"/>
+	<field name="tipoSiniestro" class="com.jswitch.siniestros.modelo.dominio.TipoSiniestro"/>
+	<field name="tratamientoEfectuado" class="com.jswitch.fas.modelo.Dominios$TratamientoEfectuado"/>
+	<title>
+		<band height="1">
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="246" y="0" width="324" height="0"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($P{reporteParametros})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["FILTROS2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="572" height="1"/>
+				<subreportParameter name="empresaLogo">
+					<subreportParameterExpression><![CDATA[$P{empresaLogo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="datosSistema">
+					<subreportParameterExpression><![CDATA[$P{datosSistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaDireccion">
+					<subreportParameterExpression><![CDATA[$P{empresaDireccion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaRif">
+					<subreportParameterExpression><![CDATA[$P{empresaRif}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteSQL">
+					<subreportParameterExpression><![CDATA[$P{reporteSQL}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteFile">
+					<subreportParameterExpression><![CDATA[$P{reporteFile}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteParametros">
+					<subreportParameterExpression><![CDATA[$P{reporteParametros}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaSuperintendencia">
+					<subreportParameterExpression><![CDATA[$P{empresaSuperintendencia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaNombre">
+					<subreportParameterExpression><![CDATA[$P{empresaNombre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaPagina">
+					<subreportParameterExpression><![CDATA[$P{empresaPagina}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteEstilo">
+					<subreportParameterExpression><![CDATA[$P{reporteEstilo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaObservacion">
+					<subreportParameterExpression><![CDATA[$P{empresaObservacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaEmail">
+					<subreportParameterExpression><![CDATA[$P{empresaEmail}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="reporteTitulo">
+					<subreportParameterExpression><![CDATA[$P{reporteTitulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empresaTelefono">
+					<subreportParameterExpression><![CDATA[$P{empresaTelefono}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["TITLE_VERTICAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="0"/>
+				<subreportParameter name="PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PAGE_COUNT">
+					<subreportParameterExpression><![CDATA[$V{PAGE_COUNT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["PAGE_HEADER_VERTICAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ORDEN DE ATENCION MEDICA PRIMARIA N° "+$F{siniestro}.numero+"-"+$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement style="TituloSombreado1" x="0" y="0" width="572" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Datos de la Institución Hospitalaria o Proveedor Clínico"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="23" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Nombre: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="23" width="374" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{personaPago}.nombreLargo]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="23" width="32" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["RIF: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="23" width="101" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{personaPago}.rif.rif]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="38" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Direción: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="38" width="509" height="15" isPrintWhenDetailOverflows="true"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{personaPago}.direcciones.size()>0
+?""+$F{personaPago}.direcciones[0].nombre
+:"No hay dirección cargada"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="92">
+			<textField>
+				<reportElement style="TituloSombreado1" x="0" y="0" width="572" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Datos del Titular"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="22" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Nombre: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="22" width="376" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{siniestro}.certificado.titular.persona.nombreLargo]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="22" width="101" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{siniestro}.certificado.titular.persona.rif.rif]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="22" width="29" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["RIF: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="TituloSombreado1" x="0" y="39" width="572" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Datos del Asegurado - Paciente"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="61" width="381" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{siniestro}.asegurado.persona.nombreLargo]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="443" y="61" width="26" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["RIF: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="61" width="101" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{siniestro}.asegurado.persona.rif.rif]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="61" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Nombre: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="76" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Parentesco: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="76" width="153" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{siniestro}.asegurado.parentesco.nombre]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<subreport>
+				<reportElement x="0" y="22" width="572" height="20"/>
+				<subreportParameter name="reporteTitulo"/>
+				<subreportParameter name="reporteFile"/>
+				<subreportParameter name="reporteEstilo"/>
+				<subreportParameter name="empresaNombre"/>
+				<subreportParameter name="empresaRif"/>
+				<subreportParameter name="empresaLogo"/>
+				<subreportParameter name="usuario"/>
+				<subreportParameter name="datosSistema"/>
+				<subreportParameter name="reporteSQL"/>
+				<subreportParameter name="reporteParametros"/>
+				<subreportParameter name="empresaDireccion"/>
+				<subreportParameter name="empresaSuperintendencia"/>
+				<subreportParameter name="empresaPagina"/>
+				<subreportParameter name="empresaTelefono"/>
+				<subreportParameter name="empresaObservacion"/>
+				<subreportParameter name="empresaEmail"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{diagnosticoSiniestros})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["SUB_SINI_DIAGNOSTICO.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement style="TituloSombreado1" x="0" y="2" width="572" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Diagnosticos"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="46">
+			<subreport>
+				<reportElement x="0" y="25" width="572" height="20"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{observaciones})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["SUB_SINI_OBSERBACIONES.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement style="TituloSombreado1" x="0" y="1" width="572" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Obserbaciones"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="84">
+			<line>
+				<reportElement x="3" y="47" width="180" height="1"/>
+			</line>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="3" y="48" width="180" height="28" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fondo Autoadministrado de Salud\n"+$P{empresaNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="391" y="48" width="180" height="28" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["El Paciente"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="390" y="47" width="180" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="7" width="571" height="22"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Hago constar que he recibido los servicios médicos antes descritos y solicito al "+$P{empresaNombre}+" RIF. "+$P{empresaRif}+", le sean cancelados los Honorarios Profesionales al Médico Tratante, Laboratorio o Estudios Especiales correspondientes a la Atención prestada."]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>
